@@ -1,8 +1,11 @@
 import { motion } from 'motion/react';
 import { getWhatsappLink } from '../utils';
 import { ExternalLink } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 export function Portfolio() {
+  const { t } = useLanguage();
+
   const testimonials = [
     { quote: "En six semaines, on est passé de zéro présence en ligne à trente demandes par mois.", author: "Dr. Sara M.", role: "Clinique, Tanger", result: "0 → 30 leads/mois" },
     { quote: "Des réservations via le site dès la première semaine. Résultat immédiat.", author: "Youssef A.", role: "Restaurateur, Tanger", result: "+40 réservations/mois" },
@@ -25,17 +28,17 @@ export function Portfolio() {
           initial={{opacity: 0, y: 30}} animate={{opacity: 1, y: 0}}
           className="text-center mb-20"
         >
-          <div className="text-[10px] uppercase font-sans tracking-[0.2em] text-[#888] mb-6">Nos Travaux</div>
-          <h1 className="font-heading text-5xl md:text-7xl text-white tracking-tight mb-8">Portfolio & Résultats</h1>
+          <div className="text-[10px] uppercase font-sans tracking-[0.2em] text-[#888] mb-6">{t('port_badge')}</div>
+          <h1 className="font-heading text-5xl md:text-7xl text-white tracking-tight mb-8">{t('port_title')}</h1>
           <p className="font-sans text-[#a3a3a3] text-lg max-w-2xl mx-auto leading-relaxed">
-            Parcourez nos récents projets et découvrez comment nous transformons l'acquisition digitale de nos clients.
+            {t('port_desc')}
           </p>
         </motion.div>
 
         {/* PORTFOLIO GRID */}
         <div className="mb-24">
           <div className="flex items-center gap-4 mb-10">
-            <h2 className="font-heading text-3xl text-white">Sites Web Récents</h2>
+            <h2 className="font-heading text-3xl text-white">{t('recent_sites')}</h2>
             <div className="h-px flex-1 bg-gradient-to-r from-[#222] to-transparent"></div>
           </div>
           
@@ -74,7 +77,7 @@ export function Portfolio() {
         {/* TESTIMONIALS GRID */}
         <div>
           <div className="flex items-center gap-4 mb-10">
-            <h2 className="font-heading text-3xl text-white">Ce qu'ils disent de nous</h2>
+            <h2 className="font-heading text-3xl text-white">{t('testimonials')}</h2>
             <div className="h-px flex-1 bg-gradient-to-r from-[#222] to-transparent"></div>
           </div>
 
@@ -109,9 +112,9 @@ export function Portfolio() {
           initial={{opacity: 0, y: 30}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}}
           className="mt-24 flex flex-col items-center justify-center text-center p-12 bg-gradient-to-b from-transparent to-[#0a0a0a] border border-[#222] rounded-3xl"
         >
-          <div className="font-sans text-sm text-[#a3a3a3] mb-6">Vous voulez voir des chiffres similaires pour votre entreprise ?</div>
+          <div className="font-sans text-sm text-[#a3a3a3] mb-6">{t('want_similar')}</div>
           <a href={getWhatsappLink("Bonjour, je souhaite voir comment vous pouvez répliquer ces résultats pour mon entreprise.")} target="_blank" rel="noopener noreferrer" className="bg-white text-black px-10 py-4 rounded-full tracking-[0.1em] text-[11px] font-sans font-bold uppercase hover:scale-105 transition-transform duration-300">
-            Discuter de Mon Projet
+            {t('discuss_proj_cap')}
           </a>
         </motion.div>
 

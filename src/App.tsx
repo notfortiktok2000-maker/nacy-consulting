@@ -12,6 +12,7 @@ import { Services } from './pages/Services';
 import { Portfolio } from './pages/Portfolio';
 import { Book } from './pages/Book';
 import { MouseGlow } from './utils';
+import { LanguageProvider } from './LanguageContext';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,22 +24,24 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-black text-white selection:bg-white selection:text-black relative">
-        <MouseGlow />
-        <Navbar />
-        <main className="flex-1 relative z-10">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/book" element={<Book />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <div className="flex flex-col min-h-screen bg-black text-white selection:bg-white selection:text-black relative">
+          <MouseGlow />
+          <Navbar />
+          <main className="flex-1 relative z-10">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/book" element={<Book />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 
