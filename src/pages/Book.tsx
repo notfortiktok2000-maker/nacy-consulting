@@ -1,0 +1,39 @@
+import { motion } from 'motion/react';
+import { InlineWidget } from 'react-calendly';
+
+export function Book() {
+  return (
+    <div className="flex flex-col items-center w-full min-h-screen pt-32 pb-16 px-4 md:px-0 relative z-10">
+      <section className="w-full max-w-[1000px] mx-auto text-center mt-12 md:mt-20">
+        <motion.div 
+          initial={{opacity: 0, y: 30}} animate={{opacity: 1, y: 0}}
+          className="mb-16"
+        >
+          <div className="text-[10px] uppercase font-sans tracking-[0.2em] text-[#888] mb-6">Gratuit & Sans Engagement</div>
+          <h1 className="font-heading text-4xl md:text-6xl text-white tracking-tight mb-8">Discutons de vos objectifs</h1>
+          <p className="font-sans text-[#a3a3a3] text-lg max-w-2xl mx-auto leading-relaxed">
+            Choisissez l'horaire qui vous convient pour un appel de découverte stratégique de 20 minutes.
+          </p>
+        </motion.div>
+
+        <motion.div 
+          initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}} transition={{delay: 0.2}}
+          className="w-full bg-[#050505] border border-[#2a2a2a] rounded-3xl overflow-hidden p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-[700px]"
+        >
+          {/* Replace this URL with your actual Calendly link */}
+          <InlineWidget 
+            url="https://calendly.com/cianmadeit/30min" 
+            styles={{ height: '100%', width: '100%' }}
+            pageSettings={{
+              backgroundColor: '050505',
+              hideEventTypeDetails: false,
+              hideLandingPageDetails: false,
+              primaryColor: 'ffffff',
+              textColor: 'ffffff'
+            }}
+          />
+        </motion.div>
+      </section>
+    </div>
+  );
+}
