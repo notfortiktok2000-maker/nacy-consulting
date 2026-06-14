@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nacyconsulting.netlify.app/sitemap.xml
