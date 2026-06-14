@@ -9,8 +9,7 @@ export function Services() {
   const [videoCount, setVideoCount] = useState(4);
   
   // Calculate dynamic pricing logic for AI Content
-  const basePrice = 1500;
-  const unitPrice = basePrice - (videoCount * 25);
+  const unitPrice = Math.max(150, 350 - ((videoCount - 1) * 5));
   const totalPrice = videoCount * unitPrice;
 
   const tabs = [
@@ -176,7 +175,7 @@ export function Services() {
                         <span className="text-3xl font-heading font-bold text-white">{totalPrice} MAD</span>
                       </div>
 
-                      <a href={getWhatsappLink(`Bonjour, je suis intéressé par le Pack Contenus IA pour environ ${videoCount} vidéos. Pouvons-nous en discuter ?`)} target="_blank" rel="noopener noreferrer" className="w-full md:w-auto bg-white text-black px-8 py-3.5 rounded-full font-sans text-xs uppercase tracking-[0.1em] font-bold hover:scale-105 transition-transform duration-300 whitespace-nowrap">
+                      <a href={getWhatsappLink(`Bonjour, je suis intéressé par le Pack Contenus IA pour environ ${videoCount} vidéos. Pouvons-nous en discuter ?`)} target="_blank" rel="noopener noreferrer" className="w-full md:w-auto flex-shrink-0 bg-white text-black px-8 py-3.5 rounded-full font-sans text-xs uppercase tracking-[0.1em] font-bold hover:scale-105 transition-transform duration-300 whitespace-nowrap text-center">
                         {t('order_pack')}
                       </a>
                    </div>
