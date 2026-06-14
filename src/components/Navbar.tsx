@@ -49,9 +49,17 @@ export function Navbar() {
             </Link>
           </div>
 
-          <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            <button 
+              onClick={toggleLanguage} 
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-[#333] bg-[#0a0a0a] text-[#888] hover:text-white hover:border-[#666] transition-colors"
+            >
+              <span className="text-[10px] font-sans font-bold uppercase">{language}</span>
+            </button>
+            <button className="text-white" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -63,7 +71,6 @@ export function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 bg-[#050505] z-[90] flex flex-col items-center justify-center gap-10 px-6 md:hidden"
           >
-            <button onClick={toggleLanguage} className="absolute top-8 right-6 text-[#999] border border-[#333] px-3 py-1.5 rounded-full font-sans text-xs uppercase hover:text-white">{language === 'fr' ? 'EN' : 'FR'}</button>
             <Link to="/" onClick={() => setMenuOpen(false)} className="text-lg font-sans uppercase tracking-[0.2em] text-[#aaa] hover:text-white transition-colors">{t('home')}</Link>
             <Link to="/services" onClick={() => setMenuOpen(false)} className="text-lg font-sans uppercase tracking-[0.2em] text-[#aaa] hover:text-white transition-colors">{t('services')}</Link>
             <Link to="/portfolio" onClick={() => setMenuOpen(false)} className="text-lg font-sans uppercase tracking-[0.2em] text-[#aaa] hover:text-white transition-colors">{t('portfolio')}</Link>
