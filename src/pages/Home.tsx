@@ -108,7 +108,7 @@ export function Home() {
 
       {/* MARQUEE */}
       <div className="w-full max-w-[1400px] border-x border-b border-[#222] bg-[#020202] overflow-hidden py-4 flex items-center md:mt-2">
-        <div className="flex whitespace-nowrap gap-12 font-sans text-[11px] uppercase tracking-[0.2em] text-[#444] animate-marquee">
+        <div className="flex whitespace-nowrap gap-12 font-sans text-[11px] uppercase tracking-[0.2em] text-[#666] animate-marquee">
           <span>{t('marquee1')}</span>
           <span>{t('marquee1')}</span>
           <span>{t('marquee1')}</span>

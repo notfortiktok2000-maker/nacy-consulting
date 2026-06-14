@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="w-full flex flex-col pt-4 mt-auto z-10 relative">
       <div className="w-full max-w-[1400px] mx-auto border-x border-[#1a1a1a] bg-black">
-        <div className="flex flex-col md:flex-row items-center justify-between p-8 border-t border-b border-[#222] gap-6 text-[10px] uppercase tracking-[0.15em] text-[#888]">
+        <div className="flex flex-col md:flex-row items-center justify-between p-8 border-t border-b border-[#222] gap-6 text-[10px] uppercase tracking-[0.15em] text-[#777]">
           <div className="flex items-end font-sans">
             <span className="font-bold mr-[2px] text-[#eee]">NACY .</span> CONSULTING
           </div>
@@ -16,13 +16,13 @@ export function Footer() {
             <Link to="/services" className="hover:text-white transition-colors duration-200">{t('services')}</Link>
             <Link to="/portfolio" className="hover:text-white transition-colors duration-200">{t('portfolio')}</Link>
           </div>
-          <div className="text-[#aaa]">Tanger, Maroc</div>
+          <div className="text-[#777]">Tanger, Maroc</div>
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-between p-8 text-[10px] uppercase tracking-[0.1em] text-[#666]">
-          <div>© 2025 NACY. CONSULTING</div>
+        <div className="flex flex-col md:flex-row items-center justify-between p-8 text-[10px] uppercase tracking-[0.1em]">
+          <div className="text-[#666]">© 2025 NACY. CONSULTING</div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors duration-200">LinkedIn</a>
-            <a href="#" className="hover:text-white transition-colors duration-200">Instagram</a>
+            <a href="#" className="text-[#888] hover:text-[#fff] transition-colors duration-200">LinkedIn</a>
+            <a href="#" className="text-[#888] hover:text-[#fff] transition-colors duration-200">Instagram</a>
           </div>
         </div>
       </div>

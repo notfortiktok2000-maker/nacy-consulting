@@ -56,7 +56,12 @@ export function Navbar() {
             >
               <span className="text-[10px] font-sans font-bold uppercase">{language}</span>
             </button>
-            <button className="text-white" onClick={() => setMenuOpen(!menuOpen)}>
+            <button 
+              className="text-white" 
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Ouvrir le menu de navigation"
+              aria-expanded={menuOpen ? "true" : "false"}
+            >
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
