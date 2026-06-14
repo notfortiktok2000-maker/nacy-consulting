@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { InlineWidget } from 'react-calendly';
 
 export function Book() {
   return (
@@ -20,18 +19,13 @@ export function Book() {
           initial={{opacity: 0, scale: 0.95}} animate={{opacity: 1, scale: 1}} transition={{delay: 0.2}}
           className="w-full bg-[#050505] border border-[#2a2a2a] rounded-3xl overflow-hidden p-2 shadow-[0_20px_50px_rgba(0,0,0,0.5)] h-[700px]"
         >
-          {/* Replace this URL with your actual Calendly link */}
-          <InlineWidget 
-            url="https://calendly.com/cianmadeit/30min" 
-            styles={{ height: '100%', width: '100%' }}
-            pageSettings={{
-              backgroundColor: '050505',
-              hideEventTypeDetails: false,
-              hideLandingPageDetails: false,
-              primaryColor: 'ffffff',
-              textColor: 'ffffff'
-            }}
-          />
+          <iframe 
+            src="https://calendly.com/cianmadeit/30min?background_color=050505&text_color=ffffff&primary_color=ffffff"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            title="Calendly Scheduling Page"
+          ></iframe>
         </motion.div>
       </section>
     </div>
