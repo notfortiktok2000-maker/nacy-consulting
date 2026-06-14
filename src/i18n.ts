@@ -39,7 +39,7 @@ export const translations = {
 
     // Home CTA
     cta_title: "Prêt à dominer votre marché ?",
-    cta_desc: "Un appel de découverte sur Calendly de 20 minutes. Sans engagement. On analyse votre présence et on vous donne une stratégie claire.",
+    cta_desc: "Un appel de découverte sur Calendly de 30 minutes. Sans engagement. On analyse votre présence et on vous donne une stratégie claire.",
     
     // Services
     serv_badge: "Nos Offres Complètes",
@@ -99,7 +99,7 @@ export const translations = {
     // Book
     book_badge: "Gratuit & Sans Engagement",
     book_title: "Discutons de vos objectifs",
-    book_desc: "Choisissez l'horaire qui vous convient pour un appel de découverte stratégique de 20 minutes.",
+    book_desc: "Choisissez l'horaire qui vous convient pour un appel de découverte stratégique de 30 minutes.",
   },
   en: {
     // Navbar
@@ -139,7 +139,7 @@ export const translations = {
 
     // Home CTA
     cta_title: "Ready to dominate your market?",
-    cta_desc: "A 20-minute discovery call on Calendly. No commitment. We analyze your presence and give you a clear strategy.",
+    cta_desc: "A 30-minute discovery call on Calendly. No commitment. We analyze your presence and give you a clear strategy.",
     
     // Services
     serv_badge: "Our Complete Offers",
@@ -199,6 +199,6 @@ export const translations = {
     // Book
     book_badge: "Free & No Commitment",
     book_title: "Let's discuss your goals",
-    book_desc: "Choose the time that suits you for a 20-minute strategic discovery call.",
+    book_desc: "Choose the time that suits you for a 30-minute strategic discovery call.",
   }
 };

@@ -19,12 +19,6 @@ export function Home() {
       <section className="w-full max-w-[1400px] mx-auto flex flex-col md:border-x border-[#222]">
         <div className="flex flex-col mt-32 md:mt-0">
           <div className="flex flex-col items-center text-center justify-center px-6 md:px-16 py-16 md:py-32 relative">
-            <motion.div 
-              initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{delay: 0.1}}
-              className="text-[10px] uppercase font-sans tracking-[0.2em] text-[#9ca3af] mb-10 border border-[#333] inline-block px-4 py-1.5 rounded-full"
-            >
-              {t('hero_badge')}
-            </motion.div>
             
             <h1 className="font-heading text-[3.5rem] md:text-6xl lg:text-[6rem] leading-[1.05] tracking-tight mb-10">
               <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{delay: 0.2}} className="text-white">{t('hero_h1_1')}</motion.div>
