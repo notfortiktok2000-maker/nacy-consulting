@@ -35,7 +35,7 @@ export function Home() {
             </motion.p>
             
             <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{delay: 0.7}} className="flex gap-8 items-center relative z-20">
-              <Link to="/book" className="bg-white text-black px-8 py-3.5 rounded-full font-sans text-xs uppercase tracking-[0.1em] font-bold hover:scale-105 transition-transform duration-300">
+              <Link to="/book" className="cta-button bg-white text-black px-8 py-3.5 rounded-full font-sans text-xs uppercase tracking-[0.1em] font-bold hover:scale-105 transition-transform duration-300">
                 {t('launch_system')}
               </Link>
             </motion.div>
@@ -89,8 +89,8 @@ export function Home() {
             
             <div className="space-y-0 border-t border-[#2a2a2a]">
               {[t('problem_1'), t('problem_2'), t('problem_3')].map((text, i) => (
-                <div key={i} className="group flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-[#2a2a2a] hover:pl-2 transition-all cursor-default">
-                  <span className="text-[11px] text-[#555] font-sans uppercase mb-2 md:mb-0">0{i + 1}</span>
+                <div key={i} className="problem-row group flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-[#2a2a2a] hover:pl-2 transition-all cursor-default">
+                  <span className="problem-number text-[11px] text-[#555] font-sans uppercase mb-2 md:mb-0" data-number={`0${i + 1}`}>00</span>
                   <span className="text-sm font-sans text-[#a3a3a3] group-hover:text-white transition-colors md:ml-6 flex-1">{text}</span>
                 </div>
               ))}
@@ -117,7 +117,7 @@ export function Home() {
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#666] to-transparent opacity-50"></div>
         <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">{t('cta_title')}</h2>
         <p className="font-sans text-[#a3a3a3] text-sm md:text-base mb-10 max-w-lg">{t('cta_desc')}</p>
-        <Link to="/book" className="bg-white text-black px-10 py-4 rounded-full tracking-[0.15em] text-[11px] font-sans font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)] relative z-20">
+        <Link to="/book" className="cta-button bg-white text-black px-10 py-4 rounded-full tracking-[0.15em] text-[11px] font-sans font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)] relative z-20">
           {t('book_call')}
         </Link>
       </motion.section>

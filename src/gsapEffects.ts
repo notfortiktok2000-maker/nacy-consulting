@@ -106,9 +106,10 @@ function initGSAP() {
     }
 
     // Effect 3: Navbar Magnetic Links
-    const navLinks = document.querySelectorAll('nav a');
+    const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
        const l = link as HTMLElement;
+       const underline = l.querySelector('.nav-underline');
        l.addEventListener('mousemove', (e) => {
           const rect = l.getBoundingClientRect();
           const centerX = rect.left + rect.width / 2;
@@ -119,6 +120,14 @@ function initGSAP() {
        });
        l.addEventListener('mouseleave', () => {
           gsap.to(l, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.3)' });
+          if(underline) {
+             gsap.to(underline, { width: 0, duration: 0.3, ease: 'power2.inOut' });
+          }
+       });
+       l.addEventListener('mouseenter', () => {
+          if(underline) {
+             gsap.to(underline, { width: '100%', duration: 0.3, ease: 'power2.out' });
+          }
        });
     });
 
@@ -154,22 +163,105 @@ function initGSAP() {
       });
     });
 
+    // Effect 5: Problem Section Rows
+    const problemRows = document.querySelectorAll('.problem-row');
+    if(problemRows.length > 0) {
+      gsap.fromTo(problemRows, 
+        { x: -80, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: "expo.out",
+          scrollTrigger: {
+            trigger: problemRows[0].parentElement,
+            start: "top 80%",
+            once: true
+          }
+        }
+      );
+      document.querySelectorAll('.problem-number').forEach((num) => {
+        const target = (num as HTMLElement).dataset.number || "0";
+        gsap.to(num, {
+          textContent: target,
+          duration: 1,
+          delay: 0.1,
+          snap: { textContent: 1 },
+          ease: "power1.inOut",
+          scrollTrigger: {
+            trigger: num,
+            start: "top 80%",
+            once: true
+          }
+        });
+      });
+    }
+
+    // Effect 8: Testimonials Horizontal Scroll
+    const testContainer = document.querySelector('.testimonials-container');
+    const testWrapper = document.querySelector('.testimonials-wrapper');
+    const testProgress = document.querySelector('.testimonial-progress');
+    if (testContainer && testWrapper && testProgress) {
+      const scrollDist = testWrapper.scrollWidth - testContainer.clientWidth;
+      const tScroll = gsap.to(testWrapper, {
+        x: -scrollDist,
+        ease: "none",
+        scrollTrigger: {
+          trigger: testContainer,
+          pin: true,
+          scrub: 1.2,
+          end: () => "+=" + scrollDist
+        }
+      });
+      gsap.to(testProgress, {
+        width: "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: testContainer,
+          scrub: 1.2,
+          start: "center center",
+          end: () => "+=" + scrollDist
+        }
+      });
+      
+      const cards = document.querySelectorAll('.testimonial-card');
+      cards.forEach(card => {
+        gsap.fromTo(card, { x: 50, opacity: 0 }, {
+           x: 0, opacity: 1, duration: 0.8,
+           scrollTrigger: {
+             trigger: card,
+             containerAnimation: tScroll,
+             start: "left 80%"
+           }
+        });
+      });
+    }
+
     // Effect 10: Final CTA Magnetic Button
-    const ctaButton = document.querySelector('a[href*="calendly"]');
-    if (ctaButton) {
-       const btn = ctaButton as HTMLElement;
-       btn.addEventListener('mousemove', (e) => {
-         const rect = btn.getBoundingClientRect();
+    const ctaButtons = document.querySelectorAll('.cta-button');
+    ctaButtons.forEach(btn => {
+       const b = btn as HTMLElement;
+       let split: any = null;
+       if (SplitText) {
+          split = new SplitText(b, {type: "chars"});
+       }
+       b.addEventListener('mousemove', (e) => {
+         const rect = b.getBoundingClientRect();
          const centerX = rect.left + rect.width / 2;
          const centerY = rect.top + rect.height / 2;
          const deltaX = (e.clientX - centerX) * 0.3;
          const deltaY = (e.clientY - centerY) * 0.3;
-         gsap.to(btn, { x: deltaX, y: deltaY, duration: 0.3, ease: "power2.out" });
+         gsap.to(b, { x: deltaX, y: deltaY, duration: 0.3, ease: "power2.out", boxShadow: "0 0 30px rgba(255,255,255,0.15)" });
        });
-       btn.addEventListener('mouseleave', () => {
-         gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+       b.addEventListener('mouseleave', () => {
+         gsap.to(b, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)", boxShadow: "0 0 0px rgba(255,255,255,0)" });
+         if (split) {
+            gsap.to(split.chars, { y: 0, stagger: 0.02, duration: 0.2 });
+         }
        });
-    }
+       b.addEventListener('mouseenter', () => {
+         if (split) {
+            gsap.to(split.chars, { y: -3, stagger: 0.02, duration: 0.2 });
+         }
+       });
+    });
 
     document.fonts.ready.then(() => {
       ScrollTrigger.refresh();

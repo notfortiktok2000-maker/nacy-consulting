@@ -30,9 +30,15 @@ export function Navbar() {
             <div className="text-xl font-heading uppercase tracking-tight">Consulting</div>
           </Link>
           
-          <div className="hidden md:flex items-center gap-6">
-            <Link to="/services" className={`text-xs uppercase font-sans tracking-[0.15em] transition-colors duration-200 ${location.pathname === '/services' ? 'text-white font-bold' : 'text-[#999] hover:text-white'}`}>{t('services')}</Link>
-            <Link to="/portfolio" className={`text-xs uppercase font-sans tracking-[0.15em] transition-colors duration-200 ${location.pathname === '/portfolio' ? 'text-white font-bold' : 'text-[#999] hover:text-white'}`}>{t('portfolio')}</Link>
+          <nav className="hidden md:flex items-center gap-6">
+            <Link to="/services" className={`nav-link relative text-xs uppercase font-sans tracking-[0.15em] transition-colors duration-200 ${location.pathname === '/services' ? 'text-white font-bold' : 'text-[#999] hover:text-white'}`}>
+               {t('services')}
+               <span className="nav-underline absolute bottom-[-4px] left-0 w-0 h-[1px] bg-white"></span>
+            </Link>
+            <Link to="/portfolio" className={`nav-link relative text-xs uppercase font-sans tracking-[0.15em] transition-colors duration-200 ${location.pathname === '/portfolio' ? 'text-white font-bold' : 'text-[#999] hover:text-white'}`}>
+               {t('portfolio')}
+               <span className="nav-underline absolute bottom-[-4px] left-0 w-0 h-[1px] bg-white"></span>
+            </Link>
             
             <button 
               onClick={toggleLanguage} 
@@ -48,7 +54,7 @@ export function Navbar() {
             >
               {t('book_call')}
             </Link>
-          </div>
+          </nav>
 
           <div className="md:hidden flex items-center gap-4">
             <button 

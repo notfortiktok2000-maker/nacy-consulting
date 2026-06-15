@@ -81,30 +81,33 @@ export function Portfolio() {
             <div className="h-px flex-1 bg-gradient-to-r from-[#222] to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {testimonials.map((t, i) => (
-              <motion.div 
-                key={i}
-                initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}} transition={{delay: 0.1 * i}}
-                whileHover={{ scale: 1.02 }}
-                className="bg-[#050505] border border-[#2a2a2a] p-10 md:p-12 rounded-3xl flex flex-col justify-between"
-              >
-                <div className="font-heading text-[4rem] h-12 leading-none text-[#666] mb-4">"</div>
-                <div className="font-heading italic text-xl md:text-2xl text-[#ececec] mb-12 leading-relaxed">
-                  {t.quote}
+          <div className="testimonials-container overflow-hidden w-full h-[500px] relative pb-6">
+            <div className="testimonials-wrapper flex gap-6 absolute top-0 left-0 h-full w-max">
+              {testimonials.map((t, i) => (
+                <div 
+                  key={i}
+                  className="testimonial-card bg-[#050505] border border-[#2a2a2a] p-10 md:p-12 rounded-3xl flex flex-col justify-between w-[90vw] md:w-[600px] h-[450px]"
+                >
+                  <div className="font-heading text-[4rem] h-12 leading-none text-[#666] mb-4">"</div>
+                  <div className="font-heading italic text-xl md:text-2xl text-[#ececec] mb-12 leading-relaxed">
+                    {t.quote}
+                  </div>
+                  
+                  <div className="flex items-end justify-between border-t border-[#2a2a2a] pt-6 mt-auto">
+                     <div>
+                        <div className="font-sans text-sm font-bold text-white mb-1">{t.author}</div>
+                        <div className="font-sans text-[11px] uppercase tracking-[0.1em] text-[#666]">{t.role}</div>
+                     </div>
+                     <div className="font-sans text-[10px] uppercase tracking-[0.1em] px-3 py-1.5 rounded-md bg-[#111] text-white border border-[#333]">
+                        {t.result}
+                     </div>
+                  </div>
                 </div>
-                
-                <div className="flex items-end justify-between border-t border-[#2a2a2a] pt-6">
-                   <div>
-                      <div className="font-sans text-sm font-bold text-white mb-1">{t.author}</div>
-                      <div className="font-sans text-[11px] uppercase tracking-[0.1em] text-[#666]">{t.role}</div>
-                   </div>
-                   <div className="font-sans text-[10px] uppercase tracking-[0.1em] px-3 py-1.5 rounded-md bg-[#111] text-white border border-[#333]">
-                      {t.result}
-                   </div>
-                </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
+            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#222]">
+               <div className="testimonial-progress h-[1px] bg-white w-0"></div>
+            </div>
           </div>
         </div>
 
