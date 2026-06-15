@@ -13,6 +13,7 @@ import { Portfolio } from './pages/Portfolio';
 import { Book } from './pages/Book';
 import { MouseGlow } from './utils';
 import { LanguageProvider } from './LanguageContext';
+import { initGsapEffects } from './gsapEffects';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -23,6 +24,14 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  useEffect(() => {
+    // Small timeout to allow DOM to be completely written by React
+    const timeout = setTimeout(() => {
+      initGsapEffects();
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <LanguageProvider>
       <BrowserRouter>
