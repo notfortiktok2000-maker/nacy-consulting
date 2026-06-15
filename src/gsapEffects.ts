@@ -1,30 +1,51 @@
 export function initGsapEffects() {
-  if (typeof window === 'undefined' || !window.gsap) return;
+  if (typeof window === 'undefined') return;
 
-  const { gsap, ScrollTrigger, SplitText, ScrollSmoother } = window as any;
+  const isMobile = window.innerWidth < 768;
 
-  // Ensure plugins are registered
-  if (ScrollTrigger && SplitText && ScrollSmoother) {
-    gsap.registerPlugin(ScrollTrigger, SplitText, ScrollSmoother);
-  } else if (ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
+  if (isMobile) {
+    initMobileAnimations();
+    return;
   }
 
-  // Effect 1: Smooth Scroll (only on desktop and if plugin is defined)
-  const isMobile = window.innerWidth < 768;
-  let smoother = null;
-  if (!isMobile && ScrollSmoother) {
-    try {
-      smoother = ScrollSmoother.create({
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
-        smooth: 1.4,
-        effects: true,
-        smoothTouch: 0.1
-      });
-    } catch (e) {
-      console.warn("ScrollSmoother not available", e);
-    }
+  // Only load GSAP on desktop
+  const scripts = [
+    'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js'
+  ];
+
+  let loaded = 0;
+  scripts.forEach(src => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = () => {
+      loaded++;
+      if (loaded === scripts.length) {
+        initGSAP();
+      }
+    };
+    document.head.appendChild(script);
+  });
+}
+
+function initGSAP() {
+  const { gsap, ScrollTrigger, SplitText, ScrollSmoother } = window as any;
+  if (!gsap || !ScrollTrigger || !SplitText || !ScrollSmoother) return;
+
+  gsap.registerPlugin(ScrollTrigger, SplitText, ScrollSmoother);
+
+  try {
+    ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.4,
+      effects: true,
+      smoothTouch: 0.1
+    });
+  } catch (e) {
+    console.warn("ScrollSmoother not available", e);
   }
 
   // Effect 11: Page Transition Curtain
@@ -50,24 +71,22 @@ export function initGsapEffects() {
   progress.style.cssText = 'position:fixed;top:0;left:0;height:1px;background:white;z-index:9999;width:0%;pointer-events:none;';
   document.body.appendChild(progress);
 
-  if (ScrollTrigger) {
-    gsap.to(progress, {
-      width: '100%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true
-      }
-    });
-  }
+  gsap.to(progress, {
+    width: '100%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: document.body,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: true
+    }
+  });
 
   // Let React completely mount before querying specific DOM nodes
   setTimeout(() => {
     // Effect 2: Hero Headline Split Text Reveal
     const heroH1Rows = document.querySelectorAll('h1 > div');
-    if (heroH1Rows.length > 0 && SplitText) {
+    if (heroH1Rows.length > 0) {
       try {
          heroH1Rows.forEach((row, i) => {
             const split = new SplitText(row, { type: "chars" });
@@ -104,39 +123,35 @@ export function initGsapEffects() {
     });
 
     // Effect 4: Marquee Strip Speed on Scroll
-    if (ScrollTrigger) {
-       ScrollTrigger.create({
-         onUpdate: (self: any) => {
-           const velocity = self.getVelocity();
-           gsap.to(".animate-marquee", {
-             timeScale: 1 + Math.abs(velocity) / 300,
-             duration: 0.5,
-             ease: "power2.out",
-             overwrite: "auto"
-           });
-         }
-       });
-    }
+    ScrollTrigger.create({
+      onUpdate: (self: any) => {
+        const velocity = self.getVelocity();
+        gsap.to(".animate-marquee", {
+          timeScale: 1 + Math.abs(velocity) / 300,
+          duration: 0.5,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }
+    });
 
     // Effect 9: Counter Animation (enhanced)
     const counters = document.querySelectorAll('.counter, [data-counter]');
     counters.forEach(counter => {
-       if (ScrollTrigger) {
-          gsap.from(counter, {
-            textContent: 0,
-            duration: 2,
-            ease: "power2.out",
-            snap: { textContent: 1 },
-            scrollTrigger: {
-              trigger: counter,
-              start: "top 80%",
-              once: true
-            },
-            onComplete: () => {
-               gsap.fromTo(counter, { scale: 1.2 }, { scale: 1, duration: 0.4, ease: "back.out(1.7)" });
-            }
-          });
-       }
+      gsap.from(counter, {
+        textContent: 0,
+        duration: 2,
+        ease: "power2.out",
+        snap: { textContent: 1 },
+        scrollTrigger: {
+          trigger: counter,
+          start: "top 80%",
+          once: true
+        },
+        onComplete: () => {
+            gsap.fromTo(counter, { scale: 1.2 }, { scale: 1, duration: 0.4, ease: "back.out(1.7)" });
+        }
+      });
     });
 
     // Effect 10: Final CTA Magnetic Button
@@ -156,9 +171,53 @@ export function initGsapEffects() {
        });
     }
 
-    if (ScrollTrigger) {
-      document.fonts.ready.then(() => ScrollTrigger.refresh());
-    }
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
 
+  }, 100);
+}
+
+function initMobileAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        (entry.target as HTMLElement).style.opacity = '1';
+        (entry.target as HTMLElement).style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  setTimeout(() => {
+    document.querySelectorAll('.counter, [data-counter]').forEach(counter => {
+      const el = counter as HTMLElement;
+      // Note: This matches the user's specific text logic
+      // In the React app, these numbers are hardcoded HTML text, we need to extract the target visually if there's no data-counter
+      const text = el.textContent || '';
+      const targetMatch = text.match(/\d+/);
+      const targetStr = el.getAttribute('data-counter') || (targetMatch ? targetMatch[0] : null);
+      if (!targetStr) return;
+      const target = parseInt(targetStr, 10);
+      
+      const obs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          let count = 0;
+          const increment = target / 60;
+          const timer = setInterval(() => {
+            count += increment;
+            if (count >= target) {
+              el.textContent = text.replace(targetStr, target.toString());
+              clearInterval(timer);
+            } else {
+              el.textContent = text.replace(targetStr, Math.floor(count).toString());
+            }
+          }, 16);
+          obs.unobserve(el);
+        }
+      });
+      obs.observe(el);
+    });
   }, 100);
 }

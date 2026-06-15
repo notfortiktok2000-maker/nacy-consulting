@@ -19,10 +19,18 @@ export function Footer() {
           <div className="text-[#777]">Tanger, Maroc</div>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between p-8 text-[10px] uppercase tracking-[0.1em]">
-          <div className="text-[#666]">© 2025 NACY. CONSULTING</div>
+          <div className="text-[#777]">© 2025 NACY. CONSULTING</div>
           <div className="flex gap-6">
-            <a href="#" className="text-[#888] hover:text-[#fff] transition-colors duration-200">LinkedIn</a>
-            <a href="#" className="text-[#888] hover:text-[#fff] transition-colors duration-200">Instagram</a>
+            <a 
+              href="https://www.instagram.com/nacyconsulting" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Suivez NACY. Consulting sur Instagram"
+              className="hover:text-white transition-colors duration-200"
+              style={{ color: '#888', fontSize: '11px', letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: '"DM Sans", sans-serif' }}
+            >
+              INSTAGRAM
+            </a>
           </div>
         </div>
       </div>

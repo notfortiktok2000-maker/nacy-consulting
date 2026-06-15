@@ -25,7 +25,7 @@ export function Navbar() {
         className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-[950px] z-[100] transition-colors duration-500 rounded-2xl md:rounded-full border ${scrolled ? 'bg-[#000000cc] border-[#333] shadow-[0_10px_40px_rgba(0,0,0,0.8)] backdrop-blur-2xl' : 'bg-transparent border-transparent'}`}
       >
         <div className="px-6 md:px-8 h-16 flex items-center justify-between">
-          <Link to="/" onClick={() => setMenuOpen(false)} className="flex flex-col items-start leading-none text-white hover:opacity-80 transition-opacity">
+          <Link to="/" onClick={() => setMenuOpen(false)} aria-label="Accueil NACY. Consulting" className="flex flex-col items-start leading-none text-white hover:opacity-80 transition-opacity">
             <div className="text-[9px] font-sans uppercase font-bold tracking-[0.2em] mb-[2px] text-[#aaa]">Nacy .</div>
             <div className="text-xl font-heading uppercase tracking-tight">Consulting</div>
           </Link>
@@ -36,6 +36,7 @@ export function Navbar() {
             
             <button 
               onClick={toggleLanguage} 
+              aria-label={`Changer la langue (actuellement ${language})`}
               className="ml-2 flex items-center justify-center w-8 h-8 rounded-full border border-[#333] bg-[#0a0a0a] text-[#888] hover:text-white hover:border-[#666] transition-colors"
             >
               <span className="text-[10px] font-sans font-bold uppercase">{language}</span>
@@ -52,6 +53,7 @@ export function Navbar() {
           <div className="md:hidden flex items-center gap-4">
             <button 
               onClick={toggleLanguage} 
+              aria-label={`Changer la langue (actuellement ${language})`}
               className="flex items-center justify-center w-8 h-8 rounded-full border border-[#333] bg-[#0a0a0a] text-[#888] hover:text-white hover:border-[#666] transition-colors"
             >
               <span className="text-[10px] font-sans font-bold uppercase">{language}</span>
@@ -61,6 +63,7 @@ export function Navbar() {
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Ouvrir le menu de navigation"
               aria-expanded={menuOpen ? "true" : "false"}
+              aria-controls="mobile-menu"
             >
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -71,6 +74,7 @@ export function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div 
+            id="mobile-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

@@ -49,7 +49,7 @@ export function Portfolio() {
                 key={i}
                 initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}} transition={{delay: 0.1 * i}}
                 whileHover={{ scale: 1.015 }}
-                className="group bg-[#080808] border border-[#2a2a2a] rounded-3xl overflow-hidden flex flex-col hover:border-[#444] transition-all relative block block-a"
+                className="group bg-[#080808] border border-[#2a2a2a] rounded-3xl overflow-hidden flex flex-col hover:border-[#666] transition-all relative block block-a"
               >
                 <div className="aspect-[16/10] bg-[#111] w-full border-b border-[#2a2a2a] relative overflow-hidden flex items-center justify-center">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#050505] opacity-50 group-hover:opacity-80 transition-opacity"></div>
@@ -89,7 +89,7 @@ export function Portfolio() {
                 whileHover={{ scale: 1.02 }}
                 className="bg-[#050505] border border-[#2a2a2a] p-10 md:p-12 rounded-3xl flex flex-col justify-between"
               >
-                <div className="font-heading text-[4rem] h-12 leading-none text-[#333] mb-4">"</div>
+                <div className="font-heading text-[4rem] h-12 leading-none text-[#666] mb-4">"</div>
                 <div className="font-heading italic text-xl md:text-2xl text-[#ececec] mb-12 leading-relaxed">
                   {t.quote}
                 </div>

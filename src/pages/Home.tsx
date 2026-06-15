@@ -102,7 +102,7 @@ export function Home() {
 
       {/* MARQUEE */}
       <div className="w-full max-w-[1400px] border-x border-b border-[#222] bg-[#020202] overflow-hidden py-4 flex items-center md:mt-2">
-        <div className="flex whitespace-nowrap gap-12 font-sans text-[11px] uppercase tracking-[0.2em] text-[#666] animate-marquee">
+        <div className="flex whitespace-nowrap gap-12 font-sans text-[11px] uppercase tracking-[0.2em] text-[#777] animate-marquee">
           <span>{t('marquee1')}</span>
           <span>{t('marquee1')}</span>
           <span>{t('marquee1')}</span>
@@ -114,7 +114,7 @@ export function Home() {
         initial={{opacity: 0, scale: 0.95}} whileInView={{opacity: 1, scale: 1}} viewport={{once: true}}
         className="w-[90%] md:w-full max-w-[1400px] mx-auto border border-[#2a2a2a] md:border-t-0 rounded-3xl md:rounded-none bg-gradient-to-br from-[#141414] to-[#050505] shadow-[inset_0_1px_rgba(255,255,255,0.05)] my-8 md:my-0 flex flex-col items-center text-center px-6 py-24 relative overflow-hidden"
       >
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#444] to-transparent opacity-50"></div>
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#666] to-transparent opacity-50"></div>
         <h2 className="font-heading text-4xl md:text-5xl text-white mb-6">{t('cta_title')}</h2>
         <p className="font-sans text-[#a3a3a3] text-sm md:text-base mb-10 max-w-lg">{t('cta_desc')}</p>
         <Link to="/book" className="bg-white text-black px-10 py-4 rounded-full tracking-[0.15em] text-[11px] font-sans font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)] relative z-20">
